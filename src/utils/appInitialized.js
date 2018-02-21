@@ -7,7 +7,7 @@ export default async function appInitialized() {
   await iconsLoaded();
   const token = await AsyncStorage.getItem('@instagramclone/token');
 
-  if (token) {
+  if (!token) {
     startLogin();
   } else {
     startMainApp();

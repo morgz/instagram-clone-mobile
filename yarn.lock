@@ -4339,6 +4339,12 @@ react-devtools-core@3.0.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-linear-gradient@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.4.0.tgz#51d8ea12bb72a59bede9edc87b694b16b64cf435"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-navigation@^1.1.377:
   version "1.1.384"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.384.tgz#fb5267f869115c55ed60a7c57c81004580e87490"
