@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
 import { iOSColors, human, systemWeights } from 'react-native-typography';
-import { LoginManager } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import Touchable from '@appandflow/touchable';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
 import { fonts } from '../../utils/themes/fonts';
 
@@ -136,10 +138,31 @@ class LoginScreen extends Component {
   state = { }
 
   _onLoginFBPress = async () => {
-    const res = await LoginManager.logInWithReadPermissions(['public_profile']);
+    const res = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+
+    if (res.grantedPermissions && !res.cancelled) {
+      const data = await AccessToken.getCurrentAccessToken();
+
+      if (data) {
+        const serverResponse = await this.props.loginMutation({
+          variables: {
+            provider: 'FACEBOOK',
+            token: data.accessToken,
+          },
+        });
+
+        console.log('====================================');
+        console.log('serverResponse', serverResponse);
+        console.log('====================================');
+      }
+    }
   }
 
   render() {
+    console.log('====================================');
+    console.log('props', this.props);
+    console.log('====================================');
+
     return (
       <View style={styles.root}>
         <StatusBar barStyle='light-content' />
@@ -202,4 +225,12 @@ class LoginScreen extends Component {
   }
 }
 
-export default LoginScreen;
+const loginMutation = gql`
+  mutation($provider: Provider, $token: String) {
+    login(provider: $provider, token: $token) {
+      token
+    }
+  }
+`;
+
+export default graphql(loginMutation, { name: 'loginMutation' })(LoginScreen);

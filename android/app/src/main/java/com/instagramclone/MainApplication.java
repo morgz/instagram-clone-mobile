@@ -1,21 +1,25 @@
 package com.instagramclone;
 
-import android.app.Application;
 
-import com.facebook.react.ReactApplication;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends NavigationApplication {
+
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
 
   @Override
   public boolean isDebug() {
@@ -28,7 +32,8 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             new VectorIconsPackage(),
-            new LinearGradientPackage() // <---- and This!
+            new LinearGradientPackage(),
+            new FBSDKPackage(mCallbackManager)
     );
   }
 
