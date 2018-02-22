@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, TextInput, AsyncStorage, ActivityIndicator } from 'react-native';
 import { iOSColors, human, systemWeights } from 'react-native-typography';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
@@ -8,8 +8,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import Touchable from '@appandflow/touchable';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { authToken } from '../../utils/constants';
 
 import { fonts } from '../../utils/themes/fonts';
+import { startMainApp } from '../../Nav';
 
 const COLORS_GRADIENTS = ['#74398D', '#56499E'];
 const BLUE_COLOR = '#318DEE70';
@@ -135,9 +137,12 @@ const styles = StyleSheet.create({
 });
 
 class LoginScreen extends Component {
-  state = { }
+  state = {
+    loading: false,
+  }
 
   _onLoginFBPress = async () => {
+    this.setState({ loading: true });
     const res = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
 
     if (res.grantedPermissions && !res.cancelled) {
@@ -151,9 +156,16 @@ class LoginScreen extends Component {
           },
         });
 
-        console.log('====================================');
-        console.log('serverResponse', serverResponse);
-        console.log('====================================');
+        // const token = serverResponse.data.login.token;
+        const { token } = serverResponse.data.login;
+
+        try {
+          await AsyncStorage.setItem(authToken, token);
+          this.setState({ loading: false });
+          startMainApp();
+        } catch (error) {
+          throw error;
+        }
       }
     }
   }
@@ -162,6 +174,14 @@ class LoginScreen extends Component {
     console.log('====================================');
     console.log('props', this.props);
     console.log('====================================');
+
+    if (this.state.loading) {
+      return (
+        <View style={styles.root}>
+          <ActivityIndicator size="large" color={iOSColors.gray} />
+        </View>
+      );
+    }
 
     return (
       <View style={styles.root}>

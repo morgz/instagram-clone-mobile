@@ -2,10 +2,13 @@ import { AsyncStorage } from 'react-native';
 
 import { iconsLoaded } from '../utils/themes';
 import { startLogin, startMainApp } from '../Nav';
+import { authToken } from '../utils/constants';
 
 export default async function appInitialized() {
   await iconsLoaded();
-  const token = await AsyncStorage.getItem('@instagramclone/token');
+
+  await AsyncStorage.removeItem(authToken);
+  const token = await AsyncStorage.getItem(authToken);
 
   if (!token) {
     startLogin();
