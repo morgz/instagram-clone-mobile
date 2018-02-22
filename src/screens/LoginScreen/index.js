@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    padding: 0,
   },
   loginButton: {
     height: 45,
@@ -149,10 +150,18 @@ class LoginScreen extends Component {
         <View style={styles.content}>
           <View style={styles.section}>
             <View style={styles.inputWrapper}>
-              <TextInput style={styles.input} placeholder="Email" />
+              <TextInput
+                underlineColorAndroid="transparent"
+                style={styles.input}
+                placeholder="Email"
+              />
             </View>
             <View style={styles.inputWrapper}>
-              <TextInput style={styles.input} placeholder="Password" />
+              <TextInput
+                underlineColorAndroid="transparent"
+                style={styles.input}
+                placeholder="Password"
+              />
             </View>
             <Touchable style={styles.loginButton} feedback='opacity'>
               <Text style={styles.loginButtonText}>Login</Text>
