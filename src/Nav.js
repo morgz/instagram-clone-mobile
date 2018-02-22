@@ -9,6 +9,9 @@ export function startLogin() {
   Navigation.startSingleScreenApp({
     screen: {
       screen: 'InstagramClone.LoginScreen',
+      navigatorStyle: {
+        navBarHidden: true,
+      },
     },
   });
 }

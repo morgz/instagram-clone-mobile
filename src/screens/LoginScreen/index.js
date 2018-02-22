@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
 import { iOSColors, human, systemWeights } from 'react-native-typography';
+import { LoginManager } from 'react-native-fbsdk';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import Touchable from '@appandflow/touchable';
@@ -131,10 +133,12 @@ const styles = StyleSheet.create({
 });
 
 class LoginScreen extends Component {
-  // static navigatorStyle = {
-  //   navBarHidden: true,
-  // };
   state = { }
+
+  _onLoginFBPress = async () => {
+    const res = await LoginManager.logInWithReadPermissions(['public_profile']);
+  }
+
   render() {
     return (
       <View style={styles.root}>
@@ -181,7 +185,7 @@ class LoginScreen extends Component {
             <View style={styles.orDivider} />
           </View>
           <View style={[styles.section, styles.sectionBottom]}>
-            <Touchable style={styles.facebookButton} feedback='opacity'>
+            <Touchable onPress={this._onLoginFBPress} style={styles.facebookButton} feedback='opacity'>
               <MaterialCommunityIcons size={30} name="facebook-box" color="#318DEE" />
               <Text style={styles.facebookLoginButtonText}>
                 Continue with Facebook
