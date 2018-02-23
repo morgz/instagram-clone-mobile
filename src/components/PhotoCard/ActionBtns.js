@@ -36,6 +36,14 @@ const styles = StyleSheet.create({
 class ActionBtns extends Component {
   state = { }
 
+  _getLikeIcon = () => {
+    if (this.props.likesPhoto) {
+      return <Ionicons name="ios-heart" size={30} color="red" />;
+    }
+
+    return <Ionicons name="ios-heart-outline" size={30} />;
+  }
+
   render() {
     return (
       <View style={styles.root}>
@@ -46,7 +54,7 @@ class ActionBtns extends Component {
             feedback='opacity'
             style={styles.actionBtn}
           >
-            <Ionicons name='ios-heart-outline' size={30} />
+            {this._getLikeIcon()}
           </Touchable>
           <Touchable hitSlop={makeHitSlop(10)} feedback='opacity' style={styles.actionBtn}>
             <EvilIcons name='comment' size={35} />

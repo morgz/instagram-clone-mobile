@@ -59,6 +59,7 @@ const getPhotos = gql`
       id
       imageUrl
       caption
+      likesPhoto
     }
   }
 `;
