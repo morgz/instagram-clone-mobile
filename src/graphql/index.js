@@ -18,7 +18,7 @@ const getToken = async () => {
 
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
-  uri: 'http://192.168.0.19:4000/api/graphql',
+  uri: 'http://0.0.0.0:4000/api/graphql',
 });
 
 const authLink = setContext(async (_, { headers }) => {

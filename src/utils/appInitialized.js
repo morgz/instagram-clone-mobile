@@ -7,7 +7,7 @@ import { authToken } from '../utils/constants';
 export default async function appInitialized() {
   await iconsLoaded();
 
-  await AsyncStorage.removeItem(authToken);
+  // await AsyncStorage.removeItem(authToken);
   const token = await AsyncStorage.getItem(authToken);
 
   if (!token) {

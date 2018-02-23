@@ -35,23 +35,29 @@ const styles = StyleSheet.create({
 
 class ActionBtns extends Component {
   state = { }
+
   render() {
     return (
       <View style={styles.root}>
         <View style={styles.actionsWrapper}>
-          <Touchable hitSlop={makeHitSlop(20)} feedback='opacity' style={styles.actionBtn}>
+          <Touchable
+            onPress={this.props.onLikedPress}
+            hitSlop={makeHitSlop(10)}
+            feedback='opacity'
+            style={styles.actionBtn}
+          >
             <Ionicons name='ios-heart-outline' size={30} />
           </Touchable>
-          <Touchable hitSlop={makeHitSlop(20)} feedback='opacity' style={styles.actionBtn}>
+          <Touchable hitSlop={makeHitSlop(10)} feedback='opacity' style={styles.actionBtn}>
             <EvilIcons name='comment' size={35} />
           </Touchable>
-          <Touchable hitSlop={makeHitSlop(20)} feedback='opacity' style={styles.actionBtn}>
+          <Touchable hitSlop={makeHitSlop(10)} feedback='opacity' style={styles.actionBtn}>
             <Ionicons name='ios-send-outline' size={35} />
           </Touchable>
         </View>
         <View style={styles.fakeView} />
         <View />
-        <Touchable hitSlop={makeHitSlop(20)} feedback='opacity' style={styles.bookmarkWrapper}>
+        <Touchable hitSlop={makeHitSlop(10)} feedback='opacity' style={styles.bookmarkWrapper}>
           <Ionicons name='ios-bookmark-outline' size={35} />
         </Touchable>
       </View>
