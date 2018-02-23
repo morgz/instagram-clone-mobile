@@ -12,7 +12,7 @@ const getToken = async () => {
     return token;
   }
 
-  token = AsyncStorage.getItem(authToken);
+  token = await AsyncStorage.getItem(authToken);
   return token;
 };
 
