@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import { PhotoCard } from '../../components';
+import { FeedsPhotoFragment } from './fragments';
 
 const styles = StyleSheet.create({
   loadingWrapper: {
@@ -56,12 +57,10 @@ class FeedsScreen extends Component {
 const getPhotos = gql`
   query {
     photos {
-      id
-      imageUrl
-      caption
-      likesPhoto
+      ...feedsPhoto
     }
   }
+  ${FeedsPhotoFragment}
 `;
 
 export default graphql(getPhotos)(FeedsScreen);

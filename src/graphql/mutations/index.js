@@ -1,3 +1,3 @@
-import likePhotos from './likePhotos';
+import likePhotoMutation from './likePhotoMutation';
 
-export { likePhotos };
+export { likePhotoMutation };
