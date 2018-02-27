@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, CameraRoll, Image, FlatList, ActivityIndicator, Dimensions } from 'react-native';
 import Touchable from '@appandflow/touchable';
 import { iOSColors } from 'react-native-typography';
+import { screens } from '../../utils/constants.js';
 
 const MAX_PHOTOS = 20;
 const PADDING = 17;
@@ -71,8 +72,18 @@ class CreatePhotoScreen extends PureComponent {
   }
 
   _onNavigatorEvent = (e) => {
-    if (e.id === 'cancel') {
-      this.props.navigator.dismissModal();
+    if (e.type === 'NavBarButtonPress') {
+      if (e.id === 'cancel') {
+        this.props.navigator.dismissModal();
+      } else if (e.id === 'goToCaption') {
+        this.props.navigator.push({
+          screen: screens.CaptionScreen,
+          title: 'Create Photo',
+          passProps: {
+            image: this.state.selected,
+          },
+        });
+      }
     }
   }
 

@@ -4,6 +4,7 @@ import FeedScreen from './FeedsScreen';
 import ExploreScreen from './ExploreScreen';
 import LoginScreen from './LoginScreen';
 import CreatePhotoScreen from './CreatePhotoScreen';
+import CaptionScreen from './CaptionScreen';
 
 import WithProvider from '../components/WithProvider';
 import { screens } from '../utils/constants';
@@ -20,6 +21,9 @@ export const registerScreens = () => {
   );
   Navigation.registerComponent(screens.CreatePhotoScreen, () =>
     WithProvider(CreatePhotoScreen)
+  );
+  Navigation.registerComponent(screens.CaptionScreen, () =>
+    WithProvider(CaptionScreen)
   );
 }
 ;
