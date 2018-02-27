@@ -3,18 +3,23 @@ import { Navigation } from 'react-native-navigation';
 import FeedScreen from './FeedsScreen';
 import ExploreScreen from './ExploreScreen';
 import LoginScreen from './LoginScreen';
+import CreatePhotoScreen from './CreatePhotoScreen';
 
 import WithProvider from '../components/WithProvider';
+import { screens } from '../utils/constants';
 
 export const registerScreens = () => {
-  Navigation.registerComponent('InstagramClone.FeedScreen', () =>
+  Navigation.registerComponent(screens.FeedScreen, () =>
     WithProvider(FeedScreen)
   );
-  Navigation.registerComponent('InstagramClone.ExploreScreen', () =>
+  Navigation.registerComponent(screens.ExploreScreen, () =>
     WithProvider(ExploreScreen)
   );
-  Navigation.registerComponent('InstagramClone.LoginScreen', () =>
+  Navigation.registerComponent(screens.LoginScreen, () =>
     WithProvider(LoginScreen)
+  );
+  Navigation.registerComponent(screens.CreatePhotoScreen, () =>
+    WithProvider(CreatePhotoScreen)
   );
 }
 ;

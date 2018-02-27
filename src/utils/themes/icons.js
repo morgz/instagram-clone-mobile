@@ -1,5 +1,6 @@
 import Entypo from 'react-native-vector-icons/Entypo';
 import Octicons from 'react-native-vector-icons/Octicons';
+import Feather from 'react-native-vector-icons/Feather';
 
 import { Platform, PixelRatio } from 'react-native';
 
@@ -10,6 +11,7 @@ const replaceSuffixPattern = /--(active|big|small|very-big)/g;
 const icons = {
   home: [navIconSize, Entypo],
   search: [navIconSize, Octicons],
+  camera: [navIconSize, Feather],
 };
 
 const iconsMap = {};

@@ -5,6 +5,8 @@ import { graphql } from 'react-apollo';
 
 import { PhotoCard } from '../../components';
 import { FeedsPhotoFragment } from './fragments';
+import { iconsMap } from '../../utils/themes';
+import { screens } from '../../utils/constants';
 
 const styles = StyleSheet.create({
   loadingWrapper: {
@@ -15,9 +17,40 @@ const styles = StyleSheet.create({
 });
 
 class FeedsScreen extends Component {
-  state = {
-    isRefreshing: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isRefreshing: false,
+    };
+    props.navigator.setOnNavigatorEvent(this._onNavigatoEvent.bind(this));
+  }
+
+  componentWillMount() {
+    this.props.navigator.setButtons({
+      leftButtons: [
+        {
+          id: 'camera',
+          icon: iconsMap.camera,
+        },
+      ],
+    });
+  }
+
+  _onNavigatoEvent(e) {
+    if (e.type === 'NavBarButtonPress') {
+      if (e.id === 'camera') {
+        console.log('====================================');
+        console.log('Camera Buton pressed');
+        console.log('====================================');
+
+        this.props.navigator.showModal({
+          screen: screens.CreatePhotoScreen,
+          title: 'Choose a Photo',
+          animationType: 'slide-up',
+        });
+      }
+    }
+  }
 
   _keyExtractor = (item) => item.id
 
