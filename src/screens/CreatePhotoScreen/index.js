@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     borderColor: iOSColors.blue,
     borderBottomWidth: 5,
   },
+  flatList: {
+    backgroundColor: 'white',
+  },
 });
 
 class CreatePhotoScreen extends PureComponent {
@@ -165,6 +168,7 @@ class CreatePhotoScreen extends PureComponent {
 
     return (
       <FlatList
+        style={styles.flatList}
         data={this.state.images}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
