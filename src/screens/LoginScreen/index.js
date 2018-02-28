@@ -143,10 +143,23 @@ class LoginScreen extends Component {
 
   _onLoginFBPress = async () => {
     this.setState({ loading: true });
+
+    console.log('====================================');
+    console.log('Facebook Login about to try');
+    console.log('====================================');
+
     const res = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+
+    console.log('====================================');
+    console.log('Facebook Login Res', res);
+    console.log('====================================');
 
     if (res.grantedPermissions && !res.cancelled) {
       const data = await AccessToken.getCurrentAccessToken();
+
+      console.log('====================================');
+      console.log('Trying for server response', res);
+      console.log('====================================');
 
       if (data) {
         const serverResponse = await this.props.loginMutation({
@@ -155,6 +168,10 @@ class LoginScreen extends Component {
             token: data.accessToken,
           },
         });
+
+        console.log('====================================');
+        console.log('Our server response', serverResponse);
+        console.log('====================================');
 
         // const token = serverResponse.data.login.token;
         const { token } = serverResponse.data.login;

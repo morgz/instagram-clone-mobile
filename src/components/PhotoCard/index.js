@@ -47,10 +47,6 @@ class PhotoCard extends Component {
     this.props.onLikePhotoMutation();
   }
 
-  // _onCreateCommentPress = () => {
-  //   this.props.onCreateCommentPress(this.props.data);
-  // }
-
   render() {
     return (
       <View style={styles.root}>

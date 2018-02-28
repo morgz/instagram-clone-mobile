@@ -164,17 +164,14 @@ class CreatePhotoScreen extends PureComponent {
     }
 
     return (
-
-      <View>
-        <FlatList
-          data={this.state.images}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-          numColumns={3}
-          extraData={this.state}
-          onEndReached={this._onEndReached}
-        />
-      </View>
+      <FlatList
+        data={this.state.images}
+        renderItem={this._renderItem}
+        keyExtractor={this._keyExtractor}
+        numColumns={3}
+        extraData={this.state}
+        onEndReached={this._onEndReached}
+      />
     );
   }
 }
