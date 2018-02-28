@@ -41,13 +41,14 @@ const styles = StyleSheet.create({
 
 class CommentInput extends Component {
   state = { }
+
   render() {
     return (
       <View style={styles.root}>
         <View style={styles.avatarWrapper}>
           <Image source={{ uri: fakeAvatarUrl }} style={styles.avatar} />
         </View>
-        <Touchable feedback='opacity' hitSlop={makeHitSlop(20)} style={styles.inputWrapper}>
+        <Touchable feedback='opacity' hitSlop={makeHitSlop(20)} style={styles.inputWrapper} onPress={this.props.onCreateCommentPress}>
           <View style={styles.input}>
             <Text style={styles.inputText}>Add a comment...</Text>
           </View>

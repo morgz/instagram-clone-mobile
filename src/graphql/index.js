@@ -18,7 +18,7 @@ const getToken = async () => {
 
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
-  uri: 'http://0.0.0.0:4000/api/graphql',
+  uri: 'https://funcmain.eu.ngrok.io/api/graphql',
 });
 
 const authLink = setContext(async (_, { headers }) => {

@@ -47,6 +47,10 @@ class PhotoCard extends Component {
     this.props.onLikePhotoMutation();
   }
 
+  // _onCreateCommentPress = () => {
+  //   this.props.onCreateCommentPress(this.props.data);
+  // }
+
   render() {
     return (
       <View style={styles.root}>
@@ -63,7 +67,7 @@ class PhotoCard extends Component {
           <Touchable feedback="opacity">
             <Text style={styles.commentViewAll}>View all 13 comments</Text>
           </Touchable>
-          <CommentInput />
+          <CommentInput onCreateCommentPress={() => this.props.onCreateCommentPress(this.props.data)} />
         </View>
         <View style={styles.timeAgoWrapper}>
           <Text style={styles.timeAgo}>6 HOURS AGO</Text>

@@ -52,9 +52,22 @@ class FeedsScreen extends Component {
     }
   }
 
+  _onCreateCommentPress = (data) => {
+    console.log('====================================');
+    console.log('Photo Comment Pressed');
+    console.log('====================================');
+    this.props.navigator.push({
+      screen: screens.CreateCommentScreen,
+      title: 'Create Comment',
+      passProps: {
+        data,
+      },
+    });
+  }
+
   _keyExtractor = (item) => item.id
 
-  _renderItem = ({ item }) => <PhotoCard data={item} />
+  _renderItem = ({ item }) => <PhotoCard data={item} onCreateCommentPress={this._onCreateCommentPress} />
 
   _refreshRequest = async () => {
     this.setState({ isRefreshing: true });

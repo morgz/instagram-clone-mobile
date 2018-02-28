@@ -5,6 +5,7 @@ import ExploreScreen from './ExploreScreen';
 import LoginScreen from './LoginScreen';
 import CreatePhotoScreen from './CreatePhotoScreen';
 import CaptionScreen from './CaptionScreen';
+import CreateCommentScreen from './CreateCommentScreen';
 
 import WithProvider from '../components/WithProvider';
 import { screens } from '../utils/constants';
@@ -24,6 +25,9 @@ export const registerScreens = () => {
   );
   Navigation.registerComponent(screens.CaptionScreen, () =>
     WithProvider(CaptionScreen)
+  );
+  Navigation.registerComponent(screens.CreateCommentScreen, () =>
+    WithProvider(CreateCommentScreen)
   );
 }
 ;

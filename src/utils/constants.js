@@ -7,4 +7,5 @@ export const screens = {
   LoginScreen: 'InstagramClone.LoginScreen',
   FeedScreen: 'InstagramClone.FeedScreen',
   CaptionScreen: 'InstagramClone.CaptionScreen',
+  CreateCommentScreen: 'InstagramClone.CreateCommentScreen',
 };
